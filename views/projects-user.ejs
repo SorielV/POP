@@ -1,0 +1,24 @@
+<% include ./includes/headerv4.ejs %>
+<% var data = 'group'; %>
+<%- include('./includes/navbar.ejs', {data: data}); %>
+	<main class="container col-11">
+		<button class="btn btn-secondary d-flex p-2 col-12" data-toggle="modal" data-target="#createGroup">
+		    <span class="text-center">New Project</span>
+		</button>
+		
+		<div class="col-12">
+	    <div class="row justify-content-center">
+        <projects :api="'/api/project/user/'"></projects>
+	    </div>
+		</div>
+		<%- include ./includes/createGroup.ejs %>
+	</main>
+</div>
+<script type="text/javascript">
+		const username = 'Soriel'
+</script>
+<script src="https://unpkg.com/vue"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue-resource@1.3.4"></script>
+<script src="/js/vue/components/request.js"></script>
+<script src="/js/vue/components/project.js"></script>
+<script src="/js/vue/controllers/default.js"></script>

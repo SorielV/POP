@@ -1,0 +1,136 @@
+<% include ./includes/headerv4.ejs %>
+<% var data = 'prost'; %>
+<%- include('./includes/navbar.ejs', {data: data}); %>
+<style>
+    .trigger {
+      padding: 1px 8px;
+      border-radius: 8px;
+      background-color: black;
+      color: white;
+      display: inline-block;
+    }
+
+    .hoverable, .trigger {
+      transition: box-shadow 0.55s;
+      box-shadow: 0;
+    }
+
+    .hoverable:hover, .trigger:hover {
+      transition: box-shadow 0.45s;
+      color: black;
+      background-color: red;
+        
+        /*box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
+    }
+
+    .li-post {
+      display: flex;
+      flex-direction: column-reverse;
+    }
+    /*main {
+        background-image: url('<%= project.bg %>');
+        background-repeat: no-repeat;
+        background-position: center;
+    }*/
+</style>
+
+<% if (project !== null) { %>
+  <div>
+    <div class="row justify-content-center">
+      <div class="col-11">               
+        <div class="project text-white text-center card card-image mb-3" style="background-image: url('<%= project.img %>')">
+          <div class="text-white rgba-black-strong py-4 px-4">
+            <div class="col-12">
+              <div>
+                <h5 class="white-text" style="display: inline" ><i class="fa fa-line-chart"></i><span><%= project.project %></span>
+                  <% if (permissions !== 3) { %>
+                    <a><i class="fa fa-cog float-right"></i></a>
+                  <% } %></h5>
+              </div>
+              <h3 class="red-text card-title pt-2"><strong><%= project.title %></strong></h3>
+              <p><%= project.description %></p>
+              <% var tag = project.tag.split(','); %>
+            </div>
+          </div>
+          <div class="card-data bg-black">
+            <ul>
+              <% for(var i = 0; i < tag.length; i++) { %>
+              <li>
+                  <a class="trigger" href="<%= tag[i] %>"><%= tag[i] %></a>
+              </li>
+              <% } %>
+            </ul>
+          </div>
+        </div>
+      </div>
+      </div>
+  </div>
+  <%  if (permissions !== 3) { %>
+  <script src="/js/project.js"></script>
+  <div class="col-12" id="postApp" ng-controller="viewPost">
+    <div class="row justify-content-center">
+      <div  class="col-md-3 col-12">
+        <div class="card">
+          <h6 class="card-header elegant-color-dark white-text">Members</h6>
+          <div class="card-body">                            
+              <ul ng-repeat="member in members track by member.point">
+                  <li ng-bind="member.username"></li>
+              </ul>
+              <div class="row">
+                <div class="col-10">
+                  <input type="text" name="member" ng-model="member" class="form-control" placeholder="Add Member">
+                </div>
+                <div class="col-1">
+                  <a class="btn-floating btn-sm blue" ng-click="addMember()"><i class="fa fa-chevron-right"></i></a>
+                </div>
+              </div>
+          </div>    
+        </div>
+      </div>
+        
+      <div class="col-md-8 col-sm-12 col-12" >
+        <div class="card">
+            <h6 class="card-header elegant-color-dark white-text">Create Post</h6>
+            <div class="card-body">                            
+              <div class="row">
+                <!--div class="justify-content-center col-6 col-sm-2 col-md-2">
+                  <div class="col-md-10 col-lg-10 col-xs-10 d-flex align-items-center">
+                      <img src="" onerror="this.src = 'http://bit.ly/2gfuQXQ'" class="avatar img-fluid">
+                  </div>
+                  <p class="text-center hidden-md-down"><strong>Username</strong></p>
+                </div-->
+                <div class="col-12" style="margin-bottom: 0">
+                  <div class="row">
+                    <div class="md-form col-12">
+                        <input type="text" name="title" class="form-control" ng-model="post.title">
+                        <label class="active">Titulo</label>
+                    </div>
+                    
+                    <div class="md-form col-12">
+                        <textarea type="text" rows="1" name="content" class="md-textarea" ng-model="post.content" style="padding: 0"></textarea>
+                        <label class="active" for="form6">Contenido</label>
+                    </div>
+                    <div class="md-form col-12" style="margin-bottom: 0">
+                        <button type="button" class="btn special-color-dark btn-lg btn-block" ng-click="addPost()" style="margin-bottom: 0">Post</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>    
+          </div>
+          <br>
+          <div class="li-post">
+            <div class="col-12" ng-repeat="post in posts track by $index">
+                <%- include ./includes/post.ejs %>  
+                <br>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+  <br>
+  <% } %>
+<% } else { %>
+<img src="https://vignette3.wikia.nocookie.net/callofduty/images/4/45/Megurine-luka-chibi.png/revision/latest?cb=20120623014028" alt="error 404">
+<% } %>
+ 

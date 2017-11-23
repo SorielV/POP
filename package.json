@@ -1,0 +1,28 @@
+{
+  "name": "test",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "body-parser": "*",
+    "connect-flash": "*",
+    "cookie-parser": "*",
+    "debug": "*",
+    "ejs": "*",
+    "express": "*",
+    "express-fileupload": "^0.3.0",
+    "express-flash": "*",
+    "express-session": "*",
+    "mongoose": "*",
+    "morgan": "*",
+    "passport": "*",
+    "passport-local": "*",
+    "passport-local-mongoose": "*",
+    "serve-favicon": "*"
+  },
+  "devDependencies": {
+    "nodemon": "^1.12.1"
+  }
+}
