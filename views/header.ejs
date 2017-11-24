@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>POP</title>
+
+  <link rel="stylesheet" href="/css/font-awesome.min.css">
+  <link href="/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/css/mdb.min.css" rel="stylesheet">
+  <link href="/css/style.css" rel="stylesheet">
+  <link href="/css/styles.css" rel="stylesheet">
+</head>
+<body>
+  <script type="text/javascript" src="/js/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/js/popper.min.js"></script>
+  <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="/js/mdb.min.js"></script>
+  <br>
+  <div id="app">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
+      <div class="container">
+        <a class="navbar-brand" href="/">
+          <svg class="img-fluid" width="40" height="40" viewBox="0 0 256 221" 
+          xmlns="http://www.w3.org/2000/svg" 
+          preserveAspectRatio="xMinYMin meet">
+          <path d="M204.8 0H256L128 220.8 0 0h97.92L128 51.2 157.44 0h47.36z" fill="#41B883"/>
+          <path d="M0 0l128 220.8L256 0h-51.2L128 132.48 50.56 0H0z" fill="#41B883"/>
+          <path d="M50.56 0L128 133.12 204.8 0h-47.36L128 51.2 97.92 0H50.56z" fill="#35495E"/>
+          </svg>
+        </a>
+
+        <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarm" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarm">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="/home">Home 
+                <!--span class="sr-only">(current)</span-->
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="/project">Proyectos</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="/project/user">Mis Proyectos</a>          
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="/project">Acerca</a>
+            </li>
+          </ul>
+
+          <ul class="navbar-nav ml-auto form-inline nav-flex-icons">
+            <form class="form-inline">
+              <input class="form-control mr-sm-2" type="text" placeholder="Buscar" aria-label="Search">
+            </form>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="modal" data-target="#request">
+                <i class="fa fa-envelope"></i><span class="badge badge-primary badge-pill">N</span>
+              </a>
+            </li>
+            <li class="nav-item avatar">
+              <div class="dropdown" style="width: 4.5rem">
+                <img class="img-fluid avatar dropdown-toggle px-3" id="dropdown-menu 4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" :src="'/img/user/' + username + '.png'" onerror="this.src = '/img/user/default.png'" />   
+                
+                <div class="dropdown-menu dropdown-menu-right dropdown-purple" aria-labelledby="dropdownMenu4">
+                  <a class="dropdown-item" href="/profile">Perfil</a>
+                  <a class="dropdown-item" href="/profile/settings">Configuracion</a>
+                  <a class="dropdown-item" href="/logout">Cerrar Sesion</a>
+                </div>
+              </div>
+            </li>
+          </ul>
+          <div class="modal fade right" id="request" tabindex="-1" 
+            role="dialog" aria-labelledby="myModalLabel" 
+            data-backdrop="false" aria-hidden="true">
+            <div class="modal-dialog modal-full-height modal-right modal-notify   modal-success" role="document">
+              <div class="modal-content">
+                <div class="modal-header bg-dark">
+                  <p class="heading lead">Request <span class="badge badge-primary badge-pill">N</span></p>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true" class="white-text">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                  <div class="text-center">
+                    <i class="fa fa-check fa-4x mb-3 animated rotateIn"></i>
+                    <p></p>
+                  </div>
+                    <requests></requests>      
+                </div>
+                <div class="modal-footer justify-content-center">
+                  <button type="button" class="btn btn-outline-secondary-modal waves-effect" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  <br>
+  <br>
+  <br>

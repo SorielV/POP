@@ -1,7 +1,5 @@
-<%- include ./includes/headerV4.ejs %>
-<%- include ./includes/navbar.ejs %>
+<% include ./header.ejs %>
 <% if ( JSON.stringify(message) ) { %>
-
 <style type="text/css">
   footer {
     position: absolute;
@@ -20,7 +18,7 @@
 
 <div class="container">
   <div class="row">
-      <div class="col-md-12 col-md-offset-3">
+    <div class="col-md-12 col-md-offset-3">
       <div class="col-12" role="document">
         <div class="col-12">
           <div class="col-12">
@@ -29,7 +27,7 @@
                 <a class="nav-link active" data-toggle="tab" href="#panel1" role="tab" aria-expanded="true"><i class="fa fa-user mr-1"></i> Login</a>
               </li>
               <li class="nav-item waves-effect waves-light">
-                <a class="nav-link" data-toggle="tab" href="#panel2" role="tab" aria-expanded="false"><i class="fa fa-user-plus mr-1"></i> Register</a>
+                <a class="nav-link" data-toggle="tab" href="#panel2" role="tab" aria-expanded="false"><i class="fa fa-user-plus mr-1"></i> Registro</a>
               </li>
             </ul>
             <div class="tab-content">
@@ -38,12 +36,12 @@
                   <form action="/" method="post">
                   <div class="md-form form-sm">
                     <i class="fa fa-user prefix"></i>
-                    <input type="text" id="form11" name="username" class="form-control" placeholder="Your Username">
+                    <input type="text" id="form11" name="username" class="form-control" placeholder="Your Username" pattern="[A-Za-z0-9]{1,10}" required>
                   </div>
 
                   <div class="md-form form-sm">
                     <i class="fa fa-lock prefix"></i>
-                    <input type="password" id="form12" name="password" class="form-control" placeholder="Your Password">
+                    <input type="password" id="form12" name="password" class="form-control" placeholder="Your Password" required>
                   </div>
                   <div class="text-center mt-2">
                     <button class="btn btn-elegant waves-effect waves-light">Log in <i class="fa fa-sign-in ml-1"></i></button>
@@ -52,38 +50,28 @@
                 </div>
               </div>
               <div class="tab-pane fade" id="panel2" role="tabpanel" aria-expanded="false">
-                <!--Body-->
                 <div class="modal-body">
                   <form action="/login" method="post">
-                  <div class="md-form form-sm">
-                    <i class="fa fa-user prefix"></i>
-                    <input type="text" id="form14" name="username" class="form-control" placeholder="Your Username" required>
-                  </div>
-
-                  <div class="md-form form-sm">
-                    <i class="fa fa-child prefix"></i>
-                    <input type="text" id="form14" name="name" class="form-control" placeholder="Your Name" required>
-                  </div>
-                  <div class="md-form form-sm">
-                    <i class="fa fa-envelope prefix"></i>
-                    <input type="text" id="form13" name="email" class="form-control" placeholder="Your email" required>
-                  </div>
-
-                  <div class="md-form form-sm">
-                    <i class="fa fa-lock prefix"></i>
-                    <input type="password" id="form14" name="password" class="form-control" placeholder="Your password" required>
-                  </div>
-
-                  <!--div class="md-form form-sm">
-                    <i class="fa fa-lock prefix"></i>
-                    <input type="password" id="form15" class="form-control" placeholder="Repeat password">
-                  </div-->
-
-                  <div class="text-center form-sm mt-2">
-                    <button class="btn btn-elegant waves-effect waves-light">Sign up <i class="fa fa-sign-in ml-1"></i></button>
-                  </div>
+                    <div class="md-form form-sm">
+                      <i class="fa fa-user prefix"></i>
+                      <input type="text" id="form14" name="username" class="form-control" placeholder="Your Username" pattern="[A-Za-z0-9-_]{1,10}" required>
+                    </div>
+                    <div class="md-form form-sm">
+                      <i class="fa fa-child prefix"></i>
+                      <input type="text" id="form14" name="name" class="form-control" placeholder="Your Name" required>
+                    </div>
+                    <div class="md-form form-sm">
+                      <i class="fa fa-envelope prefix"></i>
+                      <input type="text" id="form13" name="email" class="form-control" placeholder="Your email" required>
+                    </div>
+                    <div class="md-form form-sm">
+                      <i class="fa fa-lock prefix"></i>
+                      <input type="password" id="form14" name="password" class="form-control" placeholder="Your password" required>
+                    </div>
+                    <div class="text-center form-sm mt-2">
+                      <button class="btn btn-elegant waves-effect waves-light">Sign up <i class="fa fa-sign-in ml-1"></i></button>
+                    </div>
                   </form>
-
                 </div>
               </div>
             </div>
@@ -105,9 +93,7 @@
                 <h5 class="title">Projecto Open Source</h5>
                 <ul>
                     <li><a href="/">Home</a></li>
-                    <li><a href="/about">About</a></li>
-                    <li><a href="/login">Login In</a></li>
-                    <li><a href="/login">Sing Up</a></li>
+                    <li><a href="/about">Acerca</a></li>
                 </ul>
             </div>
         </div>

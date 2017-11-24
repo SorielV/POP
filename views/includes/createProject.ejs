@@ -1,9 +1,9 @@
-<div class="modal fade show" id="createGroup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade show" id="createProject" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog cascading-modal modal-md" role="document">
     <div class="modal-content">
       <form action="/project" method="post">
         <div class="modal-header bg-dark darken-3 white-text">
-          <h4 class="title"><i class="fa fa-pencil"></i> Create Project</h4>
+          <h4 class="title"><i class="fa fa-pencil"></i>Crear Proyecto</h4>
           <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">×</span>
           </button>
@@ -11,17 +11,17 @@
         <div class="modal-body mb-0">
             <div class="md-form form-sm">
               <i class="fa fa-plus-square prefix" aria-hidden="true"></i>
-              <input type="text" id="f1" name="title" class="form-control" placeholder="Project Name" required>
+              <input type="text" id="f1" name="title" class="form-control" placeholder="Nombre del Proyecto" required>
           </div>
 
           <div class="md-form form-sm">
               <i class="fa fa-tag prefix" aria-hidden="true"></i>
-              <input type="text" id="f2" name="project" class="form-control" placeholder="Project Tag" required>
+              <input type="text" id="f2" name="project" class="form-control" placeholder="Proyecto" pattern="[A-Za-z0-9-_]{4,10}" required>
           </div>
 
           <div class="md-form form-sm">
               <i class="fa fa-tags prefix" aria-hidden="true"></i>
-              <input type="text" class="form-control" id="for6" name="tag" placeholder="Tags del Projecto" required>
+              <input type="text" class="form-control" id="for6" name="tag" placeholder="Tags"  required>
           </div>
 
 
@@ -32,19 +32,19 @@
 
           <div class="md-form form-sm">
               <i class="fa fa-file-image-o prefix" aria-hidden="true"></i>
-              <input class="form-control" name="img" type="url" value="" id="img" placeholder="Project Image" required>
+              <input class="form-control" name="img" type="url" value="" id="img" placeholder="Imagen del Proyectos">
           </div>
 
           <div class="md-form form-sm">
               <label class="custom-control custom-checkbox">
                   <input name="public" id="for5" type="checkbox" value="true" class="custom-control-input" checked>
                   <span class="custom-control-indicator"></span>
-                  <span class="custom-control-description">Public</span>
+                  <span class="custom-control-description">Publico</span>
               </label>
           </div>
 
           <div class="text-center mt-1-half">
-              <button type="submit" class="btn btn-info mb-2 waves-effect waves-light">Create <i class="fa fa-send ml-1"></i></button>
+              <button type="submit" class="btn btn-info mb-2 waves-effect waves-light">Crear <i class="fa fa-send ml-1"></i></button>
           </div>
         </div>
       </form>

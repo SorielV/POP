@@ -1,8 +1,7 @@
-<%- include ./includes/headerv4.ejs %>
-<% var data = 'post'; %>
-<%- include('./includes/navbar.ejs', { data: data }); %>
+<% include ./header.ejs %>
+<%# var data = 'post'; %>
+<%#- include('./includes/navbar.ejs', { data: data }); %>
 
-<%- include('./includes/createPost.ejs'); %>  
     <div class="col-12">   
       <div class="row justify-content-center">   
       <%# Profile %>
@@ -33,7 +32,7 @@
 <script type="text/javascript">
   const username = '<%= username %>'
 </script>
-<script src="/js/vue/components/request.js"></script>
+<script src="/js/vuse/components/request.js"></script>
 <script src="/js/vue/components/post1.js"></script>
 <script src="/js/vue/controllers/project.js"></script>
 
