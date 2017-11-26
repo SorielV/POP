@@ -1,0 +1,94 @@
+<%- include ./header.ejs %>
+<%#- include ./includes/navbar.ejs %>
+		<div class="container col-11">	
+			<div class="row justify-content-md-center">
+				<div class="col-md-5">
+					<div class="card card-cascade">
+					    <div class="view overlay hm-white-slight col-12">
+					        <img src="/img/user/<%= user.username %>.png" onerror="this.src = '/img/user/default.png'" class="img-fluid" alt="user">
+					        <a>
+					            <div class="mask waves-effect waves-light"></div>
+					        </a>
+					    </div>
+					    
+					    <div class="card-body text-center">
+					    	<% if (user) { %>
+					    		<h4 class="card-title"><strong><%= user.username %></strong></h4>
+							<% } %>
+									<% if(user.rol !== '') { %>
+					        	<h5><%= user.rol %></h5>
+					        <% } %>
+
+					        <% if(user.tag !== '') { %>
+					        <% var tag = user.tag.split(','); %>
+					        	<ul class="tags">  
+			              <% for(var i = 0; i < tag.length; i++) { %>
+			                <li>
+			                    <a class="trigger" href="<%#= tag[i] %>"><%= tag[i] %></a>
+			                </li>
+			              <% } %>
+			              </ul>
+			            <% } %>
+
+					        <!--Facebook-->
+					        <button type="button" class="btn btn-outline-info waves-effect px-3"><i class="fa fa-facebook"></i></button>
+					        <!--Google +-->
+					        <button type="button" class="btn btn-outline-warning waves-effect px-3"><i class="fa fa-dribbble"></i></button>
+
+					    </div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="row">	
+						<div class="col-md-12" style="">
+							<div class="card">
+								<h6 class="card-header elegant-color-dark white-text">About <%= user.username %>		</h6> 
+								<div class="card-body">
+									<p><strong>Username: </strong><%= user.username %></p>
+									<% if(user.name) { %>
+									<p><strong>Name: </strong><%= user.name %></p>
+									<% } %>
+									<% if(user.age) { %>
+									<p><strong>Age</strong><%= user.age %></p>
+									<% } %>
+									<p><strong>Email: </strong><%= user.email %></p>
+									<% if(user.description) { %>
+									<p><strong>About Me: </strong><%= user.description %></p>
+									<% } %>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-12" style="margin-top: 2%;">
+							<div class="card">
+								<h6 class="card-header elegant-color-dark white-text">Projects</h6> 
+								<div class="card-body">
+									<% if(projects && projects.length !== 0) { %>
+										<% for(var i = 0; i < projects.length; i++) { %>
+											<a class="btn btn-outline-secondary btn-sm btn-rounded waves-effect" 
+												href="/project/<%= projects[i].project %>">
+												<i class="fa fa-heart-o" aria-hidden="true"><%= projects[i].project %></i>
+											</a>
+										<%	} %>	
+									<%	} %>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="https://unpkg.com/vue"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue-resource@1.3.4"></script>
+	<script src="/js/vue/components/request.js"></script>
+	<!--script src="/js/vue/components/profile.js"></script-->
+	<script type="text/javascript">
+  	const username = '<%= user.username %>'
+	</script>
+	<script src="/js/vue/controllers/project.js"></script>
+</div>
+
+</body>
+</html>
+
+    
