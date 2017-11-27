@@ -4,7 +4,7 @@ Vue.component('list-project', {
 			<ul class="list-group list-project">
 				<template v-for="project in projects">	
 					<li class="list-group-item d-flex justify-content-between align-items-center" >
-		        <span v-text="project.project"></span>
+						<a :href="'/project/' + project.project"><span v-text="project.project"></span></a>
 		       	<span class="badge badge-primary badge-pill">1</span>
 		    	</li>
 				</template>

@@ -3,20 +3,17 @@
 				<div class="container">
 					<div class="row">
 						<div class="col-6">
-  						<multiselect v-model="selected" :multiple="multiple" :hide-selected="true" :selected="selected" :options="options" :taggable="true" @tag="addTag" @update="updateSelected">
-  						</multiselect>
+		  				<multiselect v-model="selected" :multiple="multiple" :hide-selected="true" :selected="selected" :options="options" :taggable="true" @tag="addTag" @update="updateSelected">
+		  				</multiselect>
 						</div>
 						<div class="col d-flex align-items-center">
-							<select name="" class="d-flex align-items-center col-12" @change="change">
-								<option value="project">Proyecto</option>
-								<option value="title">Titulo</option>
-								<option value="tag">Tag</option>
+							<select v-model="field" class="d-flex align-items-center col-12" @change="change">
+								<option v-for="option in fields" :value="option.value" v-text="option.text"></option>
 							</select>
-							
 						</div>
 						<div class="col-2 d-flex align-items-center">
 							<button class="col btn btn-secondary p-2 text-center" data-toggle="modal" data-target="#createProject">
-						    <span class="text-center"> Nuevo Proyecto</span>
+								<span class="text-center"> Nuevo Proyecto</span>
 							</button>
 						</div>
 					</div>
@@ -24,7 +21,7 @@
 				<hr>
 				<div class="col-12">
 					<div class="row">
-						<projects :api="'/api/project/'"></projects>
+						<projects :field="field" :filter="filter" :api="'/api/project/'"></projects>
 					</div>
 				</div>
 				<%- include ./includes/createProject.ejs %>

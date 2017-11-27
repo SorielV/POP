@@ -4,16 +4,32 @@ new Vue({
 	data: {
 		project: String,
 		username: String,
+    /*  */
+    field: 'title',
+    fields: [
+      { text: 'Projecto', value: 'project' },
+      { text: 'Titulo', value: 'title' },
+      { text: 'Etiquetas', value: 'tag' }
+    ],
 		options: ['-'],
 		multiple: false,
 		selected: [],
+    filter: '',
 		value: '',
 		search: ''
+    /*  */
 	},
 	methods: {
 		addTag: function(_tag) {
-    	this.options.push(_tag)
-    	this.selected.push(_tag)
+      if(this.multiple) {
+        if(!Array.isArray(this.selected)) {
+          this.selected = []
+        }
+        this.options.push(_tag)
+        this.selected.push(_tag)
+      } else {
+        this.selected = _tag  
+      } 
     },
     updateSelected: function(selected) {
     	this.selected = selected
@@ -26,6 +42,11 @@ new Vue({
     	}
     }
 	},
+  watch: {
+    selected: function() {
+      this.filter = this.selected
+    }
+  },
 	created: function() {
 		this.project = window.location.pathname.split('/')[2] || ''
 		this.username = username || ''

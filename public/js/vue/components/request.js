@@ -62,7 +62,7 @@ Vue.component('requests', {
 		reject: function($index) {
 			this.$http.delete(`/api/request/${this.requests[$index]._id}`)
     	.then(response => {
-    		this.request.slice(this.index, 1)
+    		this.requests.splice($index, 1)
     	})
     	.catch(err => {
      		console.log('Solicitud No Rechazada C:'); 

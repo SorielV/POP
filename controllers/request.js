@@ -8,6 +8,8 @@ function findMember(params) {
 		Member.findOne(params)
 		.then((member, err) => {
 			if(err || member) {
+				console.log(err)
+				console.log(member)
 				return reject(member ? 400 : 500)
 			}
 			resolve()
@@ -93,6 +95,35 @@ const setProject = (req, res, next, project)=> {
 };
 
 const sendInvitation = (req, res) => {
+	if(req.username) 
+	{
+		findOne(User, { username: req.params.username })
+		.then(() => {
+		 	return findMember({ username: req.username, project: req.project.project })
+		})
+		.then(() => {
+			return findRequest({ from: req.project.project, to: req.username })
+		})
+		.then(() => {
+			return new Request({
+				type : 1,
+				from : req.project.project,
+				to : req.username,
+				content : req.params.content ? req.params.content : ''
+			})
+		})
+		.then(request => {
+			return save(request)
+		}).then(() => {
+			res.status(200).end()	
+		})
+		.catch((code) => {
+			res.status(code).end()
+		})
+	} else {
+		res.status(400).end()
+	}
+	/*
 	let request = new Request({
 		type : 1,
 		from : req.project.project,
@@ -105,7 +136,7 @@ const sendInvitation = (req, res) => {
 	})
 	.catch((code) => {
 		res.status(code).end()
-	})
+	})*/
 };
 
 function sendJoinRequest (req, res) { 
@@ -194,23 +225,26 @@ const updateRequest = (req, res) => {
 	.then((_request) => {
 		request = _request
 		return findMember({ 
-			username: req.user.username, 
+			username: request.type === 1 ? request.to : request.from,
 			project: request.type === 1 ? request.from : request.to 
 		})
 	})
 	.then(() => {
+		console.log(request)
 		return new Member({
 			project : request.type === 1 ? request.from : request.to,
-	   	username: request.type === 1 ? request.to : request.from,
+	   	username: request.type === 1 ? request.to : request.from
    	}) 
 	})
 	.then(member => {
+		console.log(request)
 		return save(member)
 	}).then(() => {
 		return res.status(200).end()	
 	})
 	.catch((code) => {
 		console.log(code)
+		remove(request)
 		return res.status(code).end()
 	})
 };

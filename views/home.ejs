@@ -6,7 +6,25 @@
           <div class="card col-12">
             <h6 class="card-header elegant-color-dark white-text">Usuario</h6>
             <div class="card-body">  
-                <pre><%= JSON.stringify(profile) %></pre>
+              <div class="view overlay hm-white-slight col-12">
+                <h4 class="card-title text-center"><strong><%= profile.username %></strong></h4>
+                <img src="/img/user/<%= profile.username %>.png" onerror="this.src = '/img/user/default.png'" class="img-fluid" alt="user">
+              </div>
+                    
+              <div class="card-body text-center">
+                <% if(profile.rol !== '') %>
+                <h5><%= profile.rol %></h5>
+                <% if(profile.tag !== '') { %>
+                <% var tag = profile.tag.split(','); %>
+                <ul class="tags d-flex justify-content-center">  
+                <% for(var i = 0; i < tag.length; i++) { %>
+                  <li>
+                    <a class="trigger" href="<%#= tag[i] %>"><%= tag[i] %></a>
+                  </li>
+                <% } %>
+                </ul>
+                <% } %>
+              </div>
             </div>
           </div>  
           <div class="card col-12" style="margin-top: 1rem;">

@@ -22,7 +22,7 @@ passport.use(new LocalStrategy( (username, password, done) => {
       .then((profile, err) => {
         if(profile) {
           console.log(`Login => ${profile.username}`)
-          return done(null, user)
+          return done(null, profile)
         } else {
           return done(null, false, { message: 'Informacion No Valida' })    
         } 
