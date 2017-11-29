@@ -42,25 +42,25 @@
 					<div class="row">	
 						<div class="col-md-12" style="">
 							<div class="card">
-								<h6 class="card-header elegant-color-dark white-text">About <%= user.username %>		</h6> 
+								<h6 class="card-header elegant-color-dark white-text">Sobre <%= user.username %></h6> 
 								<div class="card-body">
-									<p><strong>Username: </strong><%= user.username %></p>
+									<p><strong>Usuario: </strong><%= user.username %></p>
 									<% if(user.name) { %>
-									<p><strong>Name: </strong><%= user.name %></p>
+									<p><strong>Nombre: </strong><%= user.name %></p>
 									<% } %>
 									<% if(user.age) { %>
-									<p><strong>Age</strong><%= user.age %></p>
+									<p><strong>Edad: </strong><%= user.age %></p>
 									<% } %>
-									<p><strong>Email: </strong><%= user.email %></p>
+									<p><strong>Correo electrónico: </strong><%= user.email %></p>
 									<% if(user.description) { %>
-									<p><strong>About Me: </strong><%= user.description %></p>
+									<p><strong>Sobre <%= user.username %>: </strong><%= user.description %></p>
 									<% } %>
 								</div>
 							</div>
 						</div>
 						<div class="col-md-12" style="margin-top: 2%;">
 							<div class="card">
-								<h6 class="card-header elegant-color-dark white-text">Projects</h6> 
+								<h6 class="card-header elegant-color-dark white-text">Projectos</h6>
 								<div class="card-body">
 									<% if(projects && projects.length !== 0) { %>
 										<% for(var i = 0; i < projects.length; i++) { %>

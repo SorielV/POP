@@ -1,4 +1,4 @@
-const Project = require('../database/project'),
+ const Project = require('../database/project'),
   Member = require('../database/member');
 
 //Generic
@@ -51,7 +51,26 @@ function remove(object) {
 }
 
 const isProject = (req, res, next, project) => {  
-  if(/[A-Za-z0-9-_]{4,10}/.test(project)) 
+  console.log('is project')
+  console.log(`${project.length}`)
+  if(project.length === 24) {
+    console.log('_id')
+    findOne(Project, { _id: project})
+    .then((project) => {
+      console.log(project)
+      if(project.username === req.user.username) {
+        req.project = project
+        req.level = 1
+        next()
+      } else {
+        res.status(403).end()
+      }
+    }).catch((code) => {
+      console.log('error')
+      res.status(code).end() 
+    })
+  } 
+  else if(/[A-Za-z0-9-_]{4,10}/.test(project)) 
   {
     Project.findOne({
       project : project
@@ -77,9 +96,10 @@ const isProject = (req, res, next, project) => {
       }
     })
   } else {
-    res.status(400).end()
+    console.log('LOST')
+    res.status(404).end()
   }
-};
+}
 
 const getList = (req, res) => {
   Member.find({ 
@@ -214,7 +234,7 @@ const getUserProjects = (req, res) => {
       }
       regex += `^${member[i].project}$`
 
-      Project.find({ project : { $regex: `(${regex})` , $options: "x" } })
+      Project.find({ project : { $regex: `(${regex})` , $options: "x" } }).select('-_id')
       .then((project, err) => {
         if(err || !project)
           res.status(err ? 500 : 400).end();
@@ -231,13 +251,14 @@ const getUserProjects = (req, res) => {
 
 //Post return 200 or 400 
 const updateProject = (req, res) => {
+  console.log('update')
   let project = req.project;
   project = req.project
-  project.tags = (req.body.tags) ? req.body.tags : project.tags
-  project.project = (req.body.project_name) ? req.body.project_name : project.project
+  project.title = (req.body.title) ? req.body.title : project.title
+  project.tag = (req.body.tag) ? req.body.tag : project.tag
   project.description = (req.body.description) ? req.body.description : project.description
-  project.public = (req.body.public) ? req.body.public : project.public
-  project.bg = (req.body.bg) ? req.body.bg : project.bg
+  project.img = (req.body.img) ? req.body.img : project.img
+  //project.public = (req.body.public) ? req.body.public : project.public
 
   project.save()
   .then((project, err) => {

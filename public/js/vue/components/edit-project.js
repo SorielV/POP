@@ -2,8 +2,8 @@ Vue.component('edit-project' ,{
 	template: 
 		`<div class="modal fade show" id="editProject" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 			  <div class="modal-dialog cascading-modal modal-md" role="document">
-			    <div class="modal-content">
-			      <form action="/project" method="post">
+			    <div class="modal-content" v-on:submit.prevent="update">
+			      <form>
 			        <div class="modal-header bg-dark darken-3 white-text">
 			          <h4 class="title"><i class="fa fa-pencil"></i>Edith Project</h4>
 			          <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close">
@@ -48,8 +48,16 @@ Vue.component('edit-project' ,{
 		}
 	},
 	methods: {
-		updateProejct: function() {
-		 	console.log('It will be later')
+		update: function() {
+			this.$http.put(`/api/project/${this.project._id}`, this.project)
+			.then((response) => { 
+				this.project = response.data
+				$('#success').modal('show')
+			}).catch((err) => {
+				$('#error').modal('show')
+			})
+			$('#editProject').modal('hide')
+
 		}	
 	},
 	created: function() {

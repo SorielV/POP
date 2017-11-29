@@ -42,7 +42,7 @@ passport.deserializeUser((user, done) => done(null, user) )
 app
   .set('views', path.join(__dirname, '../views'))
   .set('view engine', 'ejs')
-  .set('port', process.env.PORT || 443);
+  .set('port', process.env.PORT || 3000);
   
 app
   //.use(logger('dev'))

@@ -3,7 +3,7 @@ Vue.component('projects' ,{
 		`<div class="row col-12">
 		 	<div class="col-md-6" v-for="(project, $index) in filtered">
 				<div class="text-white text-center card card-image mb-3" :style="'background-image: url(' + project.img + ') !important'">
-					<div class="mask pattern-8 flex-center text-white text-center d-flex align-items-center py-4 px-4">
+					<div class="rgba-stylish-strong flex-center text-white text-center d-flex align-items-center py-5 px-4">
 						<div class="justify-content-center">
 							<h5 class="white-text">
 								<i class="fa fa-line-chart"></i>
@@ -14,7 +14,7 @@ Vue.component('projects' ,{
 							</h3>
 							<p v-text="project.description"></p>
 		          <a class="btn btn-blue-grey bg-danger waves-effect waves-light" :href="'/project/' + project.project">
-		          	<i class="fa fa-clone left"></i> Ver projecto	
+		          	<i class="fa fa-clone left"></i> Ver Proyecto	
 		          </a>
 						</div>
 		      </div>

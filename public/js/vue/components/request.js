@@ -22,10 +22,19 @@ Vue.component('request', {
 Vue.component('requests', {
 	template: 
 		`<div>
-			<ul class="list-group z-depth-0" v-for="(request, $index) in requests">
-					<request @accept="accept" @reject="reject" 
-						:index="$index" :request="request">
-					</request>
+			<ul class="list-group z-depth-0" >
+				<template v-if="requests.length !== 0">
+					<template v-for="(request, $index) in requests">
+						<request @accept="accept" @reject="reject" 
+							:index="$index" :request="request">
+						</request>
+					</template>
+				</template>
+				<template v-else>
+					<li class="list-group-item justify-content-between">
+						<span>Sin solicitudes</span>
+					</li>
+				</template>
 			</ul>
 		</div>`,
 	props: {

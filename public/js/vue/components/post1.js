@@ -197,7 +197,7 @@ Vue.component('posts', {
                 	<div class="row">
 		                <div class="col-4" v-if="static === false">
 		              		<select v-model="post.project" class="form-control" style="margin-top: 0;" required="true">
-		  									<option v-for="project in projects" :value="project.value" v-text="project.text"></option>
+		  									<option v-for="project in projects" :value="project.project" v-text="project.project"></option>
 											</select>
 		                </div>	
 		                <div class="col">
@@ -262,10 +262,10 @@ Vue.component('posts', {
 			index: Number,
 			update: false,
 			error: false,
-			projects: []
+			projects: {}
 		}
 	},
-	computed: {
+	computed: {	
 		api: function() {
 			return `${this.url}${this.static ? this.project : ''}`
 		},
@@ -278,7 +278,14 @@ Vue.component('posts', {
 		.then(response => {
 			this.posts = response.data.data
 			if(!this.static) {
-				this.setProjects()
+				this.$http.get('/api/project/user')
+				.then((response) => { 
+					this.projects = response.data.filter((item) => {
+						return { project : item.project }
+					})
+				}).catch((err) => {
+					console.log(err)
+				})
 			}
 		})
 		.catch((err) => {
@@ -287,25 +294,10 @@ Vue.component('posts', {
 			this.error = true
 		})
 
+
+
 	},
 	methods: {
-		setProjects : function() {
-			let projects = []
-			let check = (item) => {
-				return projects.filter(function(el) {
-					return item == el.value 
-				})
-			}
-			for(let i = 0; i < this.posts.length; i++) {
-				if(check(this.posts[i].project).length === 0) {
-					projects.push({ text: this.posts[i].project, value: this.posts[i].project /*projects.length*/})
-				}
-				if(this.posts.length - 1 === i) {
-					this.$set(this.post, 'project', projects[0].value)
-				}
-			}
-			this.projects = projects
-		},
 		createPost: function() { 
 			if(this.static) {
 				this.post.project = this.project;	

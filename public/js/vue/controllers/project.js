@@ -16,7 +16,8 @@ new Vue({
 		selected: [],
     filter: '',
 		value: '',
-		search: ''
+		search: '',
+    error: false
     /*  */
 	},
 	methods: {
